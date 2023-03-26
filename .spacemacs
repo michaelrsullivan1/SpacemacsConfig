@@ -571,14 +571,13 @@ before packages are loaded."
   (setq-default evil-escape-key-sequence "jk")
 
   (add-hook 'org-mode-hook #'(lambda ()
-    ;; make the lines in the buffer wrap around the edges of the screen.
-    ;; to press C-c q  or fill-paragraph ever again!
+    ;; Wrap the text in org mode
     (visual-line-mode)
+    ;; Allow for abbreviation - WIP to autocomplete
     (abbrev-mode)
+    ;; Auto indent org mode text
     (org-indent-mode)))
 )
-
-
 
 
 ;; Do not write anything past this comment. This is where Emacs will
