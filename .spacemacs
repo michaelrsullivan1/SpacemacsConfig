@@ -569,6 +569,13 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
   (setq-default evil-escape-key-sequence "jk")
+
+  (add-hook 'org-mode-hook #'(lambda ()
+    ;; make the lines in the buffer wrap around the edges of the screen.
+    ;; to press C-c q  or fill-paragraph ever again!
+    (visual-line-mode)
+    (abbrev-mode)
+    (org-indent-mode)))
 )
 
 
