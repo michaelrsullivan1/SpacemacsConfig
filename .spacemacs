@@ -64,7 +64,13 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+
+   ;; add copilot.el to additional packages
+   dotspacemacs-additional-packages
+   '((copilot :location (recipe
+                         :fetcher github
+                         :repo "zerolfx/copilot.el"
+                         :files ("*.el" "dist"))))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -577,6 +583,20 @@ before packages are loaded."
     (abbrev-mode)
     ;; Auto indent org mode text
     (org-indent-mode)))
+
+  (with-eval-after-load 'company
+    ;; disable inline previews
+    (delq 'company-preview-if-just-one-frontend company-frontends))
+  
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+
 )
 
 
