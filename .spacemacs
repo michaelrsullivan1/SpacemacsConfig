@@ -580,13 +580,14 @@ before packages are loaded."
     (delq 'company-preview-if-just-one-frontend company-frontends))
   
   (with-eval-after-load 'copilot
-    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
+    (define-key copilot-completion-map (kbd "<f1>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "<f2>") 'copilot-accept-completion-by-line)
+    (define-key copilot-completion-map (kbd "<f3>") 'copilot-next-completion)
+    (define-key copilot-completion-map (kbd "<f4>") 'copilot-previous-completion)
+    )
 
     (add-hook 'prog-mode-hook 'copilot-mode)
-
-    (define-key evil-insert-state-map (kbd "q-<tab>") 'copilot-accept-completion-by-word)
-    (define-key evil-insert-state-map (kbd "q-TAB") 'copilot-accept-completion-by-word)
 
     (setq-default evil-escape-key-sequence "jk")
 
