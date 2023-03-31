@@ -574,15 +574,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (setq-default evil-escape-key-sequence "jk")
-
-  (add-hook 'org-mode-hook #'(lambda ()
-    ;; Wrap the text in org mode
-    (visual-line-mode)
-    ;; Allow for abbreviation - WIP to autocomplete
-    (abbrev-mode)
-    ;; Auto indent org mode text
-    (org-indent-mode)))
 
   (with-eval-after-load 'company
     ;; disable inline previews
@@ -592,10 +583,24 @@ before packages are loaded."
     (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
     (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
 
-  (add-hook 'prog-mode-hook 'copilot-mode)
+    (add-hook 'prog-mode-hook 'copilot-mode)
 
-  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
-  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+    (define-key evil-insert-state-map (kbd "q-<tab>") 'copilot-accept-completion-by-word)
+    (define-key evil-insert-state-map (kbd "q-TAB") 'copilot-accept-completion-by-word)
+
+    (setq-default evil-escape-key-sequence "jk")
+
+    (add-hook 'org-mode-hook #'(lambda ()
+        ;; Wrap the text in org mode
+        (visual-line-mode)
+        ;; Allow for abbreviation - WIP to autocomplete
+        (abbrev-mode)
+
+        ;; Automatically enable copilot mode
+        (copilot-mode)
+
+        ;; Auto indent org mode text
+        (org-indent-mode)))
 
 )
 
