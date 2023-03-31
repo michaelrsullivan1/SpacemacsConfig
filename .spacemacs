@@ -581,10 +581,9 @@ before packages are loaded."
   
   (with-eval-after-load 'copilot
     (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion-by-word)
-    (define-key copilot-completion-map (kbd "<f1>") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "<f2>") 'copilot-accept-completion-by-line)
-    (define-key copilot-completion-map (kbd "<f3>") 'copilot-next-completion)
-    (define-key copilot-completion-map (kbd "<f4>") 'copilot-previous-completion)
+    (define-key copilot-completion-map (kbd "<escape>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "<f1>") 'copilot-next-completion)
+    (define-key copilot-completion-map (kbd "<f2>") 'copilot-previous-completion)
     )
 
     (add-hook 'prog-mode-hook 'copilot-mode)
